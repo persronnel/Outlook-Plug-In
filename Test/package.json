@@ -1,18 +1,39 @@
-Sub ChangeEmailSubjects()
+Sub CopySubjectToSelectedEmails()
+    Dim targetSubject As String
+    Dim targetEmail As Object
     Dim selectedItems As Selection
-    Dim selectedItem As Object
+    Dim currentItem As Object
     
-    ' Get the selected items
+    ' Set the subject of the email you want to copy
+    targetSubject = "Your Target Subject"
+    
+    ' Get the selected items in Outlook
     Set selectedItems = Outlook.Application.ActiveExplorer.Selection
     
-    ' Iterate through each selected item
-    For Each selectedItem In selectedItems
-        ' Check if the item is a mail item
-        If TypeOf selectedItem Is MailItem Then
-            ' Change the subject of the mail item
-            selectedItem.Subject = "YourNewSubjectHere"
-            ' Save changes
-            selectedItem.Save
+    ' Loop through selected items
+    For Each currentItem In selectedItems
+        ' Check if the current item is a mail item
+        If TypeOf currentItem Is MailItem Then
+            ' Check if the subject matches the target subject
+            If currentItem.Subject = targetSubject Then
+                ' Save a reference to the target email
+                Set targetEmail = currentItem
+                Exit For
+            End If
         End If
-    Next selectedItem
+    Next currentItem
+    
+    ' Check if a target email was found
+    If Not targetEmail Is Nothing Then
+        ' Loop through selected items again and copy subject
+        For Each currentItem In selectedItems
+            If TypeOf currentItem Is MailItem Then
+                ' Copy the subject from the target email
+                currentItem.Subject = targetEmail.Subject
+                ' You can remove or modify other properties as needed
+            End If
+        Next currentItem
+    Else
+        MsgBox "Target email not found.", vbExclamation
+    End If
 End Sub
