@@ -1,39 +1,49 @@
-Sub CopySubjectToSelectedEmails()
-    Dim targetSubject As String
-    Dim targetEmail As Object
-    Dim selectedItems As Selection
-    Dim currentItem As Object
-    
-    ' Set the subject of the email you want to copy
-    targetSubject = "Your Target Subject"
-    
-    ' Get the selected items in Outlook
-    Set selectedItems = Outlook.Application.ActiveExplorer.Selection
-    
-    ' Loop through selected items
-    For Each currentItem In selectedItems
-        ' Check if the current item is a mail item
-        If TypeOf currentItem Is MailItem Then
-            ' Check if the subject matches the target subject
-            If currentItem.Subject = targetSubject Then
-                ' Save a reference to the target email
-                Set targetEmail = currentItem
-                Exit For
-            End If
-        End If
-    Next currentItem
-    
-    ' Check if a target email was found
-    If Not targetEmail Is Nothing Then
-        ' Loop through selected items again and copy subject
-        For Each currentItem In selectedItems
-            If TypeOf currentItem Is MailItem Then
-                ' Copy the subject from the target email
-                currentItem.Subject = targetEmail.Subject
-                ' You can remove or modify other properties as needed
-            End If
-        Next currentItem
-    Else
-        MsgBox "Target email not found.", vbExclamation
-    End If
-End Sub
+using System;
+using System.IO;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Kernel.Pdf.Xobject;
+using iText.IO.Image;
+
+class Program
+{
+    static void Main()
+    {
+        string outputPath = "C:\\Users\\rnnlm\\Documents\\output.pdf";
+
+        using (FileStream fs = new FileStream(outputPath, FileMode.Create))
+        {
+            using (PdfWriter writer = new PdfWriter(fs))
+            {
+                using (iText.Kernel.Pdf.PdfDocument pdf = new iText.Kernel.Pdf.PdfDocument(writer))
+                {
+                    Document document = new Document(pdf);
+
+                    document.Add(new Paragraph("Dashboard").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+
+                    AddGraphRow(document, "Graph 1");
+
+                    AddGraphRow(document, "Graph 2");
+
+                    document.Add(new Paragraph("Summary:"));
+
+                    Console.WriteLine($"PDF generated successfully at: {outputPath}");
+                }
+            }
+        }
+    }
+
+
+    static void AddGraphRow(Document document, string graphTitle)
+    {
+        document.Add(new AreaBreak());
+
+        document.Add(new Paragraph(graphTitle).SetBold().SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+
+        document.Add(new Paragraph("\n"));
+
+        PdfImageXObject imageXObject = new PdfImageXObject(ImageDataFactory.Create("C:\\Users\\rnnlm\\Pictures\\Screenshots\\Screenshot 2023-07-08 154336.png"));
+        document.Add(new Image(imageXObject));
+    }
+}
