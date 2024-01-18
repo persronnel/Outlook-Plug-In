@@ -1,12 +1,48 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<customUI xmlns="http://schemas.microsoft.com/office/2006/01/customui">
-  <ribbon>
-    <tabs>
-      <tab idMso="TabMail">
-        <group id="MyCustomGroup" label="My Custom Group">
-          <button id="MyButton" label="Click Me" size="large" onAction="OnButtonClick" />
-        </group>
-      </tab>
-    </tabs>
-  </ribbon>
-</customUI>
+using System.Runtime.InteropServices;
+using Outlook = Microsoft.Office.Interop.Outlook;
+using Office = Microsoft.Office.Core;
+
+namespace YourOutlookAddin
+{
+    [ComVisible(true)]
+    public class RibbonController : Office.IRibbonExtensibility
+    {
+        private Office.IRibbonUI ribbon;
+
+        public string GetCustomUI(string ribbonID)
+        {
+            return Properties.Resources.Ribbon;
+        }
+
+        public void OnButtonClick(Office.IRibbonControl control)
+        {
+            // Handle button click here
+            Outlook.MailItem selectedMail = GetCurrentItem() as Outlook.MailItem;
+            if (selectedMail != null)
+            {
+                // Perform actions with the selected email
+            }
+        }
+
+        // Helper method to get the currently selected item in Outlook
+        private object GetCurrentItem()
+        {
+            Outlook.Explorer explorer = Globals.ThisAddIn.Application.ActiveExplorer();
+            if (explorer != null && explorer.Selection.Count > 0)
+            {
+                return explorer.Selection[1];
+            }
+            return null;
+        }
+
+        #region IRibbonExtensibility Members
+
+        public Office.IRibbonUI RibbonUI
+        {
+            get { return ribbon; }
+            set { ribbon = value; }
+        }
+
+        #endregion
+    }
+}
