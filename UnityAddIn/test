@@ -2,19 +2,11 @@ private void RunMacro(string macroName)
 {
     try
     {
-        // Check if the current application is Outlook
-        if (Globals.ThisAddIn.Application is Outlook.Application outlookApp)
-        {
-            // Get the VBE (Visual Basic for Applications) object
-            VBE vbe = outlookApp.VBE;
+        Outlook.Application outlookApp = Globals.ThisAddIn.Application;
+        Outlook.Explorer activeExplorer = outlookApp.ActiveExplorer();
 
-            // Run the specified macro using the VBE object
-            vbe.Run(macroName);
-        }
-        else
-        {
-            System.Windows.Forms.MessageBox.Show("This add-in is designed to work with Outlook only.");
-        }
+        // Run the specified macro using ExecuteMso
+        activeExplorer.CommandBars.ExecuteMso(macroName);
     }
     catch (Exception ex)
     {
