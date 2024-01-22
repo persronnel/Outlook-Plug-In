@@ -1,0 +1,41 @@
+using Microsoft.Office.Tools.Ribbon;
+using Outlook = Microsoft.Office.Interop.Outlook;
+using System;
+using Microsoft.Vbe.Interop;
+
+namespace UnityAddIn
+{
+    public partial class Ribbon1
+    {
+        private void Ribbon1_Load(object sender, RibbonUIEventArgs e)
+        {
+            // Embed VBA macro code during add-in initialization
+            EmbedVbaMacro();
+        }
+
+        private void EmbedVbaMacro()
+        {
+            try
+            {
+                // Check if the current application is Outlook
+                if (Globals.ThisAddIn.Application is Outlook.Application outlookApp)
+                {
+                    // Get the VBE (Visual Basic for Applications) object
+                    VBE vbe = outlookApp.VBE;
+
+                    // Rest of the code...
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("This add-in is designed to work with Outlook only.");
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show($"Error embedding VBA macro code: {ex.Message}");
+            }
+        }
+
+        // Rest of your code...
+    }
+}
