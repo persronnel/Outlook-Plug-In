@@ -4,13 +4,19 @@ private void EmbedVbaMacro()
     {
         Outlook.Application outlookApp = Globals.ThisAddIn.Application;
 
-        // Get the active Explorer
+        // Get the VBE (Visual Basic for Applications) object
         Outlook.Explorer activeExplorer = outlookApp.ActiveExplorer();
 
-        // Get the VBE (Visual Basic for Applications) object
-        VBE vbe = activeExplorer.VBE;
+        if (activeExplorer != null)
+        {
+            VBE vbe = activeExplorer.VBE;
 
-        // Rest of your code...
+            // Rest of your code...
+        }
+        else
+        {
+            // Handle the case when ActiveExplorer is null
+        }
     }
     catch (Exception ex)
     {
