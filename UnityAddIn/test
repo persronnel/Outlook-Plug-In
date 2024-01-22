@@ -1,15 +1,19 @@
-private void RunMacro(string macroName)
+private void EmbedVbaMacro()
 {
     try
     {
         Outlook.Application outlookApp = Globals.ThisAddIn.Application;
+
+        // Get the active Explorer
         Outlook.Explorer activeExplorer = outlookApp.ActiveExplorer();
 
-        // Run the specified macro using ExecuteMso
-        activeExplorer.CommandBars.ExecuteMso(macroName);
+        // Get the VBE (Visual Basic for Applications) object
+        VBE vbe = activeExplorer.VBE;
+
+        // Rest of your code...
     }
     catch (Exception ex)
     {
-        System.Windows.Forms.MessageBox.Show($"Error running macro '{macroName}': {ex.Message}");
+        System.Windows.Forms.MessageBox.Show($"Error embedding VBA macro code: {ex.Message}");
     }
 }
