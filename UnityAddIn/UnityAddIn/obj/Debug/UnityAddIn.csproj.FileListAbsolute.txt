@@ -1,0 +1,14 @@
+C:\Users\rnnlm\source\repos\UnityAddIn\UnityAddIn\bin\Debug\UnityAddIn.dll
+C:\Users\rnnlm\source\repos\UnityAddIn\UnityAddIn\bin\Debug\UnityAddIn.pdb
+C:\Users\rnnlm\source\repos\UnityAddIn\UnityAddIn\bin\Debug\UnityAddIn.dll.manifest
+C:\Users\rnnlm\source\repos\UnityAddIn\UnityAddIn\bin\Debug\UnityAddIn.vsto
+C:\Users\rnnlm\source\repos\UnityAddIn\UnityAddIn\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.dll
+C:\Users\rnnlm\source\repos\UnityAddIn\UnityAddIn\bin\Debug\Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll
+C:\Users\rnnlm\source\repos\UnityAddIn\UnityAddIn\obj\Debug\UnityAddIn.csproj.AssemblyReference.cache
+C:\Users\rnnlm\source\repos\UnityAddIn\UnityAddIn\obj\Debug\UnityAddIn.Properties.Resources.resources
+C:\Users\rnnlm\source\repos\UnityAddIn\UnityAddIn\obj\Debug\UnityAddIn.Ribbon1.resources
+C:\Users\rnnlm\source\repos\UnityAddIn\UnityAddIn\obj\Debug\UnityAddIn.csproj.GenerateResource.cache
+C:\Users\rnnlm\source\repos\UnityAddIn\UnityAddIn\obj\Debug\UnityAddIn.csproj.CoreCompileInputs.cache
+C:\Users\rnnlm\source\repos\UnityAddIn\UnityAddIn\obj\Debug\UnityAddIn.csproj.CopyComplete
+C:\Users\rnnlm\source\repos\UnityAddIn\UnityAddIn\obj\Debug\UnityAddIn.dll
+C:\Users\rnnlm\source\repos\UnityAddIn\UnityAddIn\obj\Debug\UnityAddIn.pdb
